@@ -1,66 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web App</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  header {
-    background: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-  }
-  main {
-    margin: 20px;
-  }
-  button {
-    background: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-  }
-  button:hover {
-    background: #0056b3;
-  }
-  .output {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background: white;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+
+        .calculator {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .calculator input {
+            width: 200px;
+            height: 40px;
+            margin: 10px 0;
+            font-size: 16px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .calculator button {
+            width: 48%;
+            height: 40px;
+            margin: 10px 1%;
+            color: white;
+            background: #007bff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .calculator button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<header>
-  <h1>Welcome to the Web App</h1>
-</header>
-<main>
-  <h2>Interactive Section</h2>
-  <p>Please click the button to interact:</p>
-  <button id="actionButton">Click me</button>
-  <div id="output" class="output"></div>
-</main>
-<script>
-  document.getElementById("actionButton").addEventListener("click", function() {
-    const output = document.getElementById("output");
-    const messages = [
-      "Hello, User! Welcome to our web app!",
-      "Hope you're having a wonderful day!",
-      "You clicked the button! Great job!",
-      "Have a great time exploring our app!"
-    ];
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    output.textContent = randomMessage;
-  });
-</script>
+    <div class="calculator">
+        <h2>Simple Calculator</h2>
+        <input type="number" id="num1" placeholder="Enter first number" />
+        <input type="number" id="num2" placeholder="Enter second number" />
+        <div>
+            <button onclick="calculate('add')">Add</button>
+            <button onclick="calculate('subtract')">Subtract</button>
+        </div>
+        <div>
+            <button onclick="calculate('multiply')">Multiply</button>
+            <button onclick="calculate('divide')">Divide</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            const result = document.getElementById("result");
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result.textContent = "Please enter valid numbers!";
+                return;
+            }
+
+            let output;
+            switch (operation) {
+                case 'add':
+                    output = num1 + num2;
+                    break;
+                case 'subtract':
+                    output = num1 - num2;
+                    break;
+                case 'multiply':
+                    output = num1 * num2;
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        result.textContent = "Error: Division by zero!";
+                        return;
+                    }
+                    output = num1 / num2;
+                    break;
+                default:
+                    output = "Unknown operation";
+            }
+
+            result.textContent = `Result: ${output}`;
+        }
+    </script>
 </body>
 </html>
