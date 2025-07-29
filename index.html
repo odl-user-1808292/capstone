@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  header {
+    background: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+  }
+  main {
+    margin: 20px;
+  }
+  button {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #0056b3;
+  }
+  .output {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: white;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Welcome to the Web App</h1>
+</header>
+<main>
+  <h2>Interactive Section</h2>
+  <p>Please click the button to interact:</p>
+  <button id="actionButton">Click me</button>
+  <div id="output" class="output"></div>
+</main>
+<script>
+  document.getElementById("actionButton").addEventListener("click", function() {
+    const output = document.getElementById("output");
+    const messages = [
+      "Hello, User! Welcome to our web app!",
+      "Hope you're having a wonderful day!",
+      "You clicked the button! Great job!",
+      "Have a great time exploring our app!"
+    ];
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    output.textContent = randomMessage;
+  });
+</script>
+</body>
+</html>
